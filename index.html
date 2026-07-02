@@ -222,8 +222,8 @@
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-        .feedback-lane::-webkit-scrollbar { display: none; }
-        .feedback-lane { -ms-overflow-style: none; }
+        .feedback-track:hover { animation-play-state: paused; }
+        @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .feedback-card img {
             width: 100%;
             height: 250px;
@@ -260,9 +260,8 @@
                 bottom: 15px;
                 right: 15px;
             }
-            .feedback-card img {
-                height: 200px;
-            }
+            .feedback-item { width: 260px; }
+            .video-feedback-item { width: 240px; height: 430px; }
         }
         @media(prefers-reduced-motion:reduce){
             *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
@@ -472,90 +471,115 @@
 <!-- ===== STUDENT FEEDBACK ===== -->
 <section class="py-5" style="background: var(--white);">
     <div class="container">
-        <h2 class="text-center display-5 fw-bold mb-4" style="color:var(--primary);">💬 Student Feedback & Results</h2>
+        <h2 class="text-center display-5 fw-bold mb-3" style="color:var(--primary);">💬 Student Feedback & Results</h2>
         <p class="text-center text-muted mb-4">Real stories from real students who transformed their lives</p>
 
-        <div class="feedback-lane-wrapper" style="position:relative;">
-            <div class="feedback-lane" id="feedbackLane" style="display:flex;gap:15px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:10px;scrollbar-width:none;">
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card shine-effect" style="height:100%;">
-                        <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="height:380px;object-fit:cover;">
-                    </div>
+        <div class="feedback-viewport" style="overflow:hidden;margin:1.5rem 0;">
+            <div class="feedback-track" style="display:flex;gap:15px;width:max-content;animation:scrollLeft 40s linear infinite;">
+                <!-- Set 1: Images -->
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card shine-effect" style="height:100%;">
-                        <img src="https://i.ibb.co/Xkr0g9Yh/Whats-App-Image-2026-07-01-at-11-31-28-PM.jpg" alt="Student Feedback 2" loading="lazy" style="height:380px;object-fit:cover;">
-                    </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/Xkr0g9Yh/Whats-App-Image-2026-07-01-at-11-31-28-PM.jpg" alt="Student Feedback 2" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card shine-effect" style="height:100%;">
-                        <img src="https://i.ibb.co/3mJNNTb7/Whats-App-Image-2026-07-01-at-11-31-27-PM.jpg" alt="Student Feedback 3" loading="lazy" style="height:380px;object-fit:cover;">
-                    </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/3mJNNTb7/Whats-App-Image-2026-07-01-at-11-31-27-PM.jpg" alt="Student Feedback 3" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card shine-effect" style="height:100%;">
-                        <img src="https://i.ibb.co/7Jj2zMJq/Whats-App-Image-2026-07-01-at-11-31-10-PM.jpg" alt="Student Feedback 4" loading="lazy" style="height:380px;object-fit:cover;">
-                    </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/7Jj2zMJq/Whats-App-Image-2026-07-01-at-11-31-10-PM.jpg" alt="Student Feedback 4" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card shine-effect" style="height:100%;">
-                        <img src="https://i.ibb.co/vxNFDM3Y/Whats-App-Image-2026-07-01-at-11-27-34-PM.jpg" alt="Student Feedback 5" loading="lazy" style="height:380px;object-fit:cover;">
-                    </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/vxNFDM3Y/Whats-App-Image-2026-07-01-at-11-27-34-PM.jpg" alt="Student Feedback 5" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card shine-effect" style="height:100%;">
-                        <img src="https://i.ibb.co/sJVhRPbp/Whats-App-Image-2026-07-01-at-11-27-33-PM-1.jpg" alt="Student Feedback 6" loading="lazy" style="height:380px;object-fit:cover;">
-                    </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/sJVhRPbp/Whats-App-Image-2026-07-01-at-11-27-33-PM-1.jpg" alt="Student Feedback 6" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card shine-effect" style="height:100%;">
-                        <img src="https://i.ibb.co/WWcPygpm/Whats-App-Image-2026-07-01-at-11-27-33-PM.jpg" alt="Student Feedback 7" loading="lazy" style="height:380px;object-fit:cover;">
-                    </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/WWcPygpm/Whats-App-Image-2026-07-01-at-11-27-33-PM.jpg" alt="Student Feedback 7" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card" style="height:100%;">
-                        <div class="video-wrapper" style="padding-bottom:135%;">
-                            <iframe src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=1&mute=1&loop=1&playlist=xLQ-wCui2k4" 
-                                    title="Student Testimonial 1" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>
+                <!-- Set 1: Videos -->
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=1&mute=1&loop=1&playlist=xLQ-wCui2k4" 
+                            title="Student Testimonial 1" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card" style="height:100%;">
-                        <div class="video-wrapper" style="padding-bottom:135%;">
-                            <iframe src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=1&mute=1&loop=1&playlist=4AeCVCMjSEg" 
-                                    title="Student Testimonial 2" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=1&mute=1&loop=1&playlist=4AeCVCMjSEg" 
+                            title="Student Testimonial 2" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card" style="height:100%;">
-                        <div class="video-wrapper" style="padding-bottom:135%;">
-                            <iframe src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=1&mute=1&loop=1&playlist=3CO5yx3ZubU" 
-                                    title="Student Testimonial 3" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=1&mute=1&loop=1&playlist=3CO5yx3ZubU" 
+                            title="Student Testimonial 3" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
                 </div>
-                <div class="feedback-lane-item" style="flex:0 0 auto;width:280px;scroll-snap-align:start;">
-                    <div class="feedback-card" style="height:100%;">
-                        <div class="video-wrapper" style="padding-bottom:135%;">
-                            <iframe src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=1&mute=1&loop=1&playlist=ubhWxTUNYOA" 
-                                    title="Student Testimonial 4" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen loading="lazy"></iframe>
-                        </div>
-                    </div>
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=1&mute=1&loop=1&playlist=ubhWxTUNYOA" 
+                            title="Student Testimonial 4" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
+                </div>
+                <!-- Set 2 duplicate for seamless loop -->
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/Xkr0g9Yh/Whats-App-Image-2026-07-01-at-11-31-28-PM.jpg" alt="Student Feedback 2" loading="lazy" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/3mJNNTb7/Whats-App-Image-2026-07-01-at-11-31-27-PM.jpg" alt="Student Feedback 3" loading="lazy" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/7Jj2zMJq/Whats-App-Image-2026-07-01-at-11-31-10-PM.jpg" alt="Student Feedback 4" loading="lazy" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/vxNFDM3Y/Whats-App-Image-2026-07-01-at-11-27-34-PM.jpg" alt="Student Feedback 5" loading="lazy" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/sJVhRPbp/Whats-App-Image-2026-07-01-at-11-27-33-PM-1.jpg" alt="Student Feedback 6" loading="lazy" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="feedback-item" style="flex-shrink:0;width:300px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
+                    <img src="https://i.ibb.co/WWcPygpm/Whats-App-Image-2026-07-01-at-11-27-33-PM.jpg" alt="Student Feedback 7" loading="lazy" style="width:100%;height:auto;display:block;">
+                </div>
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=1&mute=1&loop=1&playlist=xLQ-wCui2k4" 
+                            title="Student Testimonial 1" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=1&mute=1&loop=1&playlist=4AeCVCMjSEg" 
+                            title="Student Testimonial 2" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=1&mute=1&loop=1&playlist=3CO5yx3ZubU" 
+                            title="Student Testimonial 3" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-feedback-item" style="flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    <iframe src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=1&mute=1&loop=1&playlist=ubhWxTUNYOA" 
+                            title="Student Testimonial 4" 
+                            style="width:100%;height:100%;border:none;"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
         </div>
-
-        <div class="text-center mt-4">
+        <div class="text-center mt-3">
             <button class="wa-btn open-any shine-effect" data-source="Feedback Section">📲 Join & Get Results Like These</button>
         </div>
     </div>
