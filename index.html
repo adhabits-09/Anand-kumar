@@ -184,8 +184,6 @@
             display: block;
         }
 
-        /* WhatsApp Float Button */
-
         /* Feedback section styles */
         .feedback-card {
             background: var(--white);
@@ -238,8 +236,6 @@
             .shine-effect::before{animation:none !important;}
         }
     </style>
-<base target="_blank">
-<base target="_blank">
 <base target="_blank">
 </head>
 <body class="text-dark">
@@ -688,28 +684,28 @@
                         <label class="form-label d-flex align-items-center gap-2">
                             <i data-lucide="user" style="width:16px;"></i> Full Name *
                         </label>
-                        <input id="inp_name" type="text" class="form-control" required placeholder="Enter your full name">
+                        <input id="inp_name" name="name" type="text" class="form-control" required placeholder="Enter your full name">
                     </div>
 
                     <div class="col-12">
                         <label class="form-label d-flex align-items-center gap-2">
                             <i data-lucide="phone" style="width:16px;"></i> WhatsApp Number *
                         </label>
-                        <input id="inp_phone" type="tel" class="form-control" required maxlength="10" placeholder="10-digit number">
+                        <input id="inp_phone" name="phone" type="tel" class="form-control" required maxlength="10" placeholder="10-digit number">
                     </div>
 
                     <div class="col-6">
                         <label class="form-label d-flex align-items-center gap-2">
                             <i data-lucide="calendar" style="width:16px;"></i> Age *
                         </label>
-                        <input id="inp_age" type="number" class="form-control" required min="15" max="65" placeholder="Your age">
+                        <input id="inp_age" name="age" type="number" class="form-control" required min="15" max="65" placeholder="Your age">
                     </div>
 
                     <div class="col-6">
                         <label class="form-label d-flex align-items-center gap-2">
                             <i data-lucide="users" style="width:16px;"></i> Gender *
                         </label>
-                        <select id="inp_gender" class="form-select" required>
+                        <select id="inp_gender" name="gender" class="form-select" required>
                             <option value="">Select</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -721,7 +717,7 @@
                         <label class="form-label d-flex align-items-center gap-2">
                             <i data-lucide="briefcase" style="width:16px;"></i> Profession *
                         </label>
-                        <select id="inp_profession" class="form-select" required>
+                        <select id="inp_profession" name="profession" class="form-select" required>
                             <option value="">Select your status</option>
                             <option>Student</option>
                             <option>Housewife</option>
@@ -748,20 +744,6 @@
 
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxjLj2nrlEVlr0E5mxgSpf3Z9mWqeyeddLxhFDIc2mI65pirwUDuhRph6in-c_vTkyW/exec";
     const WA_NUMBER  = "916207321982";
-
-    /* ============================================================
-       META PIXEL TRACKING - CONTACT EVENT
-
-       Rule: Contact event fires ONLY ONCE per session, and ONLY
-       when user completes the FULL funnel:
-       1. Clicks any CTA button (opens form popup) - NO tracking
-       2. Fills out the form with all details - NO tracking
-       3. Clicks "Send & Connect on WhatsApp" (form submit) - TRACK HERE
-       4. Gets redirected to WhatsApp with all details
-
-       The event does NOT fire on any other button clicks.
-       sessionStorage ensures it fires only once per browser tab.
-       ============================================================ */
 
     function trackContactEvent() {
       if (typeof fbq !== 'undefined' && !sessionStorage.getItem('anand_contact_tracked')) {
@@ -802,7 +784,6 @@
     const privacyBtn    = document.getElementById('privacyBtn');
     const closePrivBtn  = document.getElementById('closePrivacyBtn');
 
-    // Open form popup (NO pixel tracking here - just opens the form)
     function openForm(source) {
         sourceInfo.value = source || 'Website';
         formBackdrop.classList.add('show');
@@ -830,8 +811,6 @@
     closePrivBtn.addEventListener('click', closePrivacy);
     privacyModal.addEventListener('click', e => { if (e.target === privacyModal) closePrivacy(); });
 
-    // Open form when ANY .open-any button is clicked
-    // NOTE: NO Meta Pixel event fires here. It only opens the form popup.
     document.addEventListener('click', (e) => {
         const trigger = e.target.closest('.open-any');
         if (trigger && !trigger.closest('#formContainer')) {
@@ -844,16 +823,6 @@
         if (e.key === 'Escape') { closeForm(); closePrivacy(); }
     });
 
-    /* ============================================================
-       FORM SUBMISSION HANDLER - FINAL ACTION
-
-       CRITICAL FIXES APPLIED:
-       1. WhatsApp redirect happens IMMEDIATELY (not after fetch)
-       2. Google Sheet data sent in background (no-cors mode)
-       3. Meta Pixel Contact event fires only on final submit
-       4. Fallback link created for popup blockers
-       5. Mobile-friendly WhatsApp URL format
-       ============================================================ */
     mainForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -864,29 +833,20 @@
         const profession = document.getElementById('inp_profession').value;
         const source     = sourceInfo.value || 'Website';
 
-        // Validation
         if (!name || phone.length < 10 || !age || !gender || !profession) {
             alert('Please fill all fields correctly with a valid 10-digit phone number.');
             return;
         }
 
-        // Build WhatsApp message
         const msg = encodeURIComponent(
             `Hello Anand! 👋\n\nI'm interested in your digital mentorship program. Here are my details:\n\nName: ${name}\nPhone: ${phone}\nAge: ${age}\nGender: ${gender}\nProfession: ${profession}\n\nPlease share next steps. Thank you! ✨`
         );
 
-        // Build WhatsApp URL (universal format works on all devices)
         const waUrl = `https://wa.me/${WA_NUMBER}?text=${msg}`;
 
-        // ============================================================
-        // FIX #1: Open WhatsApp IMMEDIATELY (before anything else)
-        // This ensures the redirect happens even if fetch fails or is slow
-        // ============================================================
         const waWindow = window.open(waUrl, '_blank');
 
-        // If popup blocked, create a fallback clickable link
         if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
-            // Create fallback button inside form
             const fallbackDiv = document.createElement('div');
             fallbackDiv.innerHTML = `
                 <div style="margin-top:15px;padding:15px;background:#e0f2fe;border-radius:10px;text-align:center;">
@@ -897,13 +857,9 @@
             const submitBtn = mainForm.querySelector('button[type="submit"]');
             submitBtn.parentNode.insertBefore(fallbackDiv, submitBtn.nextSibling);
             submitBtn.style.display = 'none';
-            return; // Don't close form yet, let user click fallback
+            return;
         }
 
-        // ============================================================
-        // FIX #2: Send data to Google Sheet in BACKGROUND
-        // Using no-cors mode so it doesn't block the WhatsApp redirect
-        // ============================================================
         const formData = new FormData();
         formData.append('Timestamp', new Date().toLocaleString());
         formData.append('Name', name);
@@ -913,7 +869,6 @@
         formData.append('Profession', profession);
         formData.append('Source', source);
 
-        // Use keepalive to ensure data sends even if page navigates away
         fetch(SCRIPT_URL, {
             method: 'POST',
             body: formData,
@@ -923,7 +878,6 @@
             console.log('✅ Data saved to Google Sheet successfully');
         }).catch((error) => {
             console.error('❌ Sheet error:', error);
-            // Retry once after 2 seconds
             setTimeout(() => {
                 fetch(SCRIPT_URL, {
                     method: 'POST',
@@ -934,13 +888,8 @@
             }, 2000);
         });
 
-        // ============================================================
-        // FIX #3: Meta Pixel Contact Event - FIRES ONLY HERE
-        // Only on successful form submit, only once per session
-        // ============================================================
         trackContactEvent();
 
-        // Close the form popup after a short delay
         setTimeout(() => {
             closeForm();
         }, 500);
