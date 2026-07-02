@@ -83,7 +83,6 @@
         }
         .glow-border:hover{box-shadow:0 0 25px rgba(14,165,233,.4);transform:translateY(-3px);}
 
-        /* ── SKY BLUE buttons (Eshita style) ── */
         .wa-btn{
             background:linear-gradient(135deg,var(--primary),var(--light));
             color:var(--white);
@@ -167,11 +166,9 @@
             outline:none;
         }
 
-        /* Privacy content scroll */
         #privacyContent{display:flex;flex-direction:column;}
         .pp-scroll{overflow-y:auto;padding:1.5rem;flex:1;}
 
-        /* Hero image container */
         .hero-image-wrap {
             border-radius: 20px;
             overflow: hidden;
@@ -184,7 +181,6 @@
             display: block;
         }
 
-        /* Feedback section styles */
         .feedback-card {
             background: var(--white);
             border-radius: 15px;
@@ -207,7 +203,7 @@
         }
         .feedback-card .video-wrapper {
             position: relative;
-            padding-bottom: 177.78%; /* 9:16 aspect ratio for shorts */
+            padding-bottom: 177.78%;
             height: 0;
             overflow: hidden;
         }
@@ -443,7 +439,6 @@
 
         <div class="feedback-viewport" style="overflow:hidden;margin:1.5rem 0;">
             <div class="feedback-track" style="display:flex;gap:15px;width:max-content;animation:scrollLeft 40s linear infinite;">
-                <!-- Set 1: Images -->
                 <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
                     <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
@@ -457,7 +452,6 @@
                     <img src="https://i.ibb.co/7Jj2zMJq/Whats-App-Image-2026-07-01-at-11-31-10-PM.jpg" alt="Student Feedback 4" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
 
-                <!-- Set 1: Videos -->
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
                     <iframe src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=1&mute=1&loop=1&playlist=xLQ-wCui2k4" 
                             title="Student Testimonial 1" 
@@ -486,7 +480,6 @@
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen loading="lazy"></iframe>
                 </div>
-                <!-- Set 2 duplicate for seamless loop -->
                 <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
                     <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
@@ -736,20 +729,21 @@
     </div>
 </div>
 
-
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     lucide.createIcons();
 
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWpI8fKA1UYfVac8QwcP7tafFht892dmnpFjGMPhRGqxJOZ4QGX0fdzXjSrYCDeE_rXw/exec";
+    // ============================================================
+    // SCRIPT URL - YAHAN APNI NAYI GOOGLE APPS SCRIPT URL DAALEIN
+    // ============================================================
+    const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID_HERE/exec";
     const WA_NUMBER  = "916207321982";
 
     function trackContactEvent() {
       if (typeof fbq !== 'undefined' && !sessionStorage.getItem('anand_contact_tracked')) {
         fbq('track', 'Contact');
         sessionStorage.setItem('anand_contact_tracked', 'true');
-        console.log("[Meta Pixel] Contact event tracked successfully (once per session)");
       }
     }
 
@@ -823,6 +817,9 @@
         if (e.key === 'Escape') { closeForm(); closePrivacy(); }
     });
 
+    // ============================================================
+    // FORM SUBMIT - GOOGLE SHEET + WHATSAPP
+    // ============================================================
     mainForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -838,61 +835,28 @@
             return;
         }
 
-        const msg = encodeURIComponent(
-            `Hello Anand! 👋\n\nI'm interested in your digital mentorship program. Here are my details:\n\nName: ${name}\nPhone: ${phone}\nAge: ${age}\nGender: ${gender}\nProfession: ${profession}\n\nPlease share next steps. Thank you! ✨`
-        );
+        // 1. WHATSAPP - Sirf "I am interested in this work"
+        const waMsg = encodeURIComponent('I am interested in this work');
+        const waUrl = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
+        window.open(waUrl, '_blank');
 
-        const waUrl = `https://wa.me/${WA_NUMBER}?text=${msg}`;
-
-        const waWindow = window.open(waUrl, '_blank');
-
-        if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
-            const fallbackDiv = document.createElement('div');
-            fallbackDiv.innerHTML = `
-                <div style="margin-top:15px;padding:15px;background:#e0f2fe;border-radius:10px;text-align:center;">
-                    <p style="margin-bottom:10px;color:#0c4a6e;font-weight:600;">📱 Tap below to open WhatsApp</p>
-                    <a href="${waUrl}" target="_blank" class="wa-btn" style="display:inline-flex;">Open WhatsApp</a>
-                </div>
-            `;
-            const submitBtn = mainForm.querySelector('button[type="submit"]');
-            submitBtn.parentNode.insertBefore(fallbackDiv, submitBtn.nextSibling);
-            submitBtn.style.display = 'none';
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('Timestamp', new Date().toLocaleString());
-        formData.append('Name', name);
-        formData.append('Phone', phone);
-        formData.append('Age', age);
-        formData.append('Gender', gender);
-        formData.append('Profession', profession);
-        formData.append('Source', source);
-
-        fetch(SCRIPT_URL, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors',
-            keepalive: true
-        }).then(() => {
-            console.log('✅ Data saved to Google Sheet successfully');
-        }).catch((error) => {
-            console.error('❌ Sheet error:', error);
-            setTimeout(() => {
-                fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'no-cors',
-                    keepalive: true
-                }).catch(() => {});
-            }, 2000);
+        // 2. GOOGLE SHEET - Saari details query params mein bhejo
+        const params = new URLSearchParams({
+            name: name,
+            phone: phone,
+            age: age,
+            gender: gender,
+            profession: profession,
+            source: source
         });
 
-        trackContactEvent();
+        fetch(SCRIPT_URL + '?' + params.toString(), {
+            method: 'POST',
+            mode: 'no-cors'
+        }).catch(() => {});
 
-        setTimeout(() => {
-            closeForm();
-        }, 500);
+        trackContactEvent();
+        closeForm();
     });
 </script>
 </body>
