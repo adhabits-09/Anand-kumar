@@ -217,8 +217,7 @@
             border-radius: 15px 15px 0 0;
         }
 
-        
-        .feedback-track {
+                .feedback-track {
             display: flex;
             gap: 15px;
             width: max-content;
@@ -226,6 +225,51 @@
         }
         .feedback-track:hover {
             animation-play-state: paused;
+        }
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #000;
+        }
+        .video-wrapper .video-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .video-wrapper .play-btn-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.3);
+            transition: background 0.3s;
+        }
+        .video-wrapper:hover .play-btn-overlay {
+            background: rgba(0,0,0,0.5);
+        }
+        .video-wrapper .video-iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        .video-wrapper.playing .video-thumb,
+        .video-wrapper.playing .play-btn-overlay {
+            display: none;
+        }
+        .video-wrapper.playing .video-iframe {
+            display: block !important;
+        }
+        @media(max-width:768px){
+            .video-wrapper { height: 320px; }
         }
 @media(max-width:768px){
             section{padding:40px 0;}
@@ -464,33 +508,37 @@
                 </div>
 
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 1" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="xLQ-wCui2k4" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/xLQ-wCui2k4/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 2" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="4AeCVCMjSEg" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/4AeCVCMjSEg/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 3" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="3CO5yx3ZubU" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/3CO5yx3ZubU/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 4" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="ubhWxTUNYOA" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/ubhWxTUNYOA/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
                 <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
                     <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
@@ -505,33 +553,37 @@
                 </div>
 
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 1" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="xLQ-wCui2k4" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/xLQ-wCui2k4/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 2" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="4AeCVCMjSEg" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/4AeCVCMjSEg/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 3" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="3CO5yx3ZubU" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/3CO5yx3ZubU/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
                 <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
-                    <iframe src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
-                            title="Student Testimonial 4" 
-                            style="width:100%;height:100%;border:none;"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen loading="lazy"></iframe>
-                </div>
+                    <div class="video-wrapper" data-video-id="ubhWxTUNYOA" onclick="toggleVideo(this)">
+                        <img src="https://img.youtube.com/vi/ubhWxTUNYOA/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
+                        <div class="play-btn-overlay">
+                            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
+                        </div>
+                        <iframe class="video-iframe" src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
+                    </div></div>
             </div>
         </div>
         <div class="text-center mt-3">
@@ -871,6 +923,33 @@
         trackContactEvent();
         closeForm();
     });
+
+    // Video play/pause toggle for mobile
+    function toggleVideo(wrapper) {
+        const iframe = wrapper.querySelector('.video-iframe');
+        const isPlaying = wrapper.classList.contains('playing');
+
+        // Pause all other videos first
+        document.querySelectorAll('.video-wrapper.playing').forEach(el => {
+            if (el !== wrapper) {
+                el.classList.remove('playing');
+                const otherIframe = el.querySelector('.video-iframe');
+                const vidId = el.dataset.videoId;
+                otherIframe.src = `https://www.youtube.com/embed/${vidId}?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0`;
+            }
+        });
+
+        if (!isPlaying) {
+            wrapper.classList.add('playing');
+            const vidId = wrapper.dataset.videoId;
+            iframe.src = `https://www.youtube.com/embed/${vidId}?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0`;
+        } else {
+            wrapper.classList.remove('playing');
+            const vidId = wrapper.dataset.videoId;
+            iframe.src = `https://www.youtube.com/embed/${vidId}?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0`;
+        }
+    }
+
 </script>
 </body>
 </html>
