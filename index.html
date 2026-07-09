@@ -193,7 +193,6 @@
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
-        .feedback-track:hover { animation-play-state: paused; }
         @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .feedback-card img {
             width: 100%;
@@ -201,13 +200,7 @@
             object-fit: cover;
             display: block;
         }
-        .feedback-card .video-wrapper {
-            position: relative;
-            padding-bottom: 177.78%;
-            height: 0;
-            overflow: hidden;
-        }
-        .feedback-card .video-wrapper iframe {
+        .feedback-card .feedback-card .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -217,7 +210,16 @@
             border-radius: 15px 15px 0 0;
         }
 
-                .feedback-track {
+                .video-wrapper .video-wrapper .video-wrapper:hover .video-wrapper .video-iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+                /* ===== FEEDBACK SECTION - CLEAN CSS ===== */
+        .feedback-track {
             display: flex;
             gap: 15px;
             width: max-content;
@@ -226,10 +228,37 @@
         .feedback-track:hover {
             animation-play-state: paused;
         }
+
+        .feedback-item {
+            flex-shrink: 0;
+            width: 200px;
+            height: 360px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #000;
+        }
+        .feedback-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-feedback-item {
+            flex-shrink: 0;
+            width: 200px;
+            height: 360px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #000;
+        }
+
         .video-wrapper {
             position: relative;
             width: 100%;
-            height: 360px;
+            height: 100%;
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
@@ -260,6 +289,7 @@
             height: 100%;
             border: none;
             border-radius: 15px;
+            display: none;
         }
         .video-wrapper.playing .video-thumb,
         .video-wrapper.playing .play-btn-overlay {
@@ -268,8 +298,10 @@
         .video-wrapper.playing .video-iframe {
             display: block !important;
         }
-        @media(max-width:768px){
-            .video-wrapper { height: 320px; }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 @media(max-width:768px){
             section{padding:40px 0;}
@@ -278,9 +310,24 @@
             .wa-btn{width:100%;justify-content:center;}
             h1.display-3{font-size:2rem;}
             h2.display-5{font-size:1.5rem;}
-            .feedback-item { width: 180px; }
+            .feedback-item { width: 180px; height: 320px; }
             .video-feedback-item { width: 180px; height: 320px; }
         }
+        .feedback-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+@media(max-width:768px){
+            section{padding:40px 0;}
+            .hero-section{padding:50px 0 30px;}
+            .counter{font-size:1.6rem;}
+            .wa-btn{width:100%;justify-content:center;}
+            h1.display-3{font-size:2rem;}
+            h2.display-5{font-size:1.5rem;}
+            }
         @media(prefers-reduced-motion:reduce){
             *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
             .shine-effect::before{animation:none !important;}
@@ -493,100 +540,116 @@
         <p class="text-center text-muted mb-4">Real stories from real students who transformed their lives</p>
 
         <div class="feedback-viewport" style="overflow:hidden;margin:1.5rem 0;">
-            <div class="feedback-track" class="feedback-track">
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
+                        <div class="feedback-track" class="feedback-track">
+                <!-- 5 New Feedback Images -->
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/Mkc9FW4b/Whats-App-Image-2026-07-01-at-11-27-33-PM-1.jpg" alt="Student Feedback 1" loading="lazy">
                 </div>
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/Xkr0g9Yh/Whats-App-Image-2026-07-01-at-11-31-28-PM.jpg" alt="Student Feedback 2" loading="lazy" style="width:100%;height:auto;display:block;">
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/svyJqcyt/Whats-App-Image-2026-07-01-at-11-27-33-PM.jpg" alt="Student Feedback 2" loading="lazy">
                 </div>
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/3mJNNTb7/Whats-App-Image-2026-07-01-at-11-31-27-PM.jpg" alt="Student Feedback 3" loading="lazy" style="width:100%;height:auto;display:block;">
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/dsVQgqRV/Whats-App-Image-2026-07-06-at-5-10-56-PM-1.jpg" alt="Student Feedback 3" loading="lazy">
                 </div>
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/7Jj2zMJq/Whats-App-Image-2026-07-01-at-11-31-10-PM.jpg" alt="Student Feedback 4" loading="lazy" style="width:100%;height:auto;display:block;">
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/q3H92DCf/Whats-App-Image-2026-07-06-at-5-10-56-PM.jpg" alt="Student Feedback 4" loading="lazy">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/Y7sThgnj/Whats-App-Image-2026-07-06-at-5-10-57-PM.jpg" alt="Student Feedback 5" loading="lazy">
                 </div>
 
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                <!-- 4 Video Testimonials -->
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="xLQ-wCui2k4" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/xLQ-wCui2k4/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    </div>
+                </div>
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="4AeCVCMjSEg" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/4AeCVCMjSEg/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    </div>
+                </div>
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="3CO5yx3ZubU" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/3CO5yx3ZubU/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    </div>
+                </div>
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="ubhWxTUNYOA" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/ubhWxTUNYOA/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
-                </div>
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/Xkr0g9Yh/Whats-App-Image-2026-07-01-at-11-31-28-PM.jpg" alt="Student Feedback 2" loading="lazy" style="width:100%;height:auto;display:block;">
-                </div>
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/3mJNNTb7/Whats-App-Image-2026-07-01-at-11-31-27-PM.jpg" alt="Student Feedback 3" loading="lazy" style="width:100%;height:auto;display:block;">
-                </div>
-                <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
-                    <img src="https://i.ibb.co/7Jj2zMJq/Whats-App-Image-2026-07-01-at-11-31-10-PM.jpg" alt="Student Feedback 4" loading="lazy" style="width:100%;height:auto;display:block;">
+                    </div>
                 </div>
 
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                <!-- Duplicate for infinite scroll -->
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/Mkc9FW4b/Whats-App-Image-2026-07-01-at-11-27-33-PM-1.jpg" alt="Student Feedback 1" loading="lazy">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/svyJqcyt/Whats-App-Image-2026-07-01-at-11-27-33-PM.jpg" alt="Student Feedback 2" loading="lazy">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/dsVQgqRV/Whats-App-Image-2026-07-06-at-5-10-56-PM-1.jpg" alt="Student Feedback 3" loading="lazy">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/q3H92DCf/Whats-App-Image-2026-07-06-at-5-10-56-PM.jpg" alt="Student Feedback 4" loading="lazy">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://i.ibb.co/Y7sThgnj/Whats-App-Image-2026-07-06-at-5-10-57-PM.jpg" alt="Student Feedback 5" loading="lazy">
+                </div>
+
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="xLQ-wCui2k4" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/xLQ-wCui2k4/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/xLQ-wCui2k4?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    </div>
+                </div>
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="4AeCVCMjSEg" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/4AeCVCMjSEg/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/4AeCVCMjSEg?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    </div>
+                </div>
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="3CO5yx3ZubU" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/3CO5yx3ZubU/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/3CO5yx3ZubU?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
-                <div class="video-feedback-item" style="flex-shrink:0;width:200px;height:360px;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;position:relative;">
+                    </div>
+                </div>
+                <div class="video-feedback-item">
                     <div class="video-wrapper" data-video-id="ubhWxTUNYOA" onclick="toggleVideo(this)">
                         <img src="https://img.youtube.com/vi/ubhWxTUNYOA/mqdefault.jpg" class="video-thumb" alt="Video thumbnail" loading="lazy">
                         <div class="play-btn-overlay">
                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" fill="rgba(0,0,0,0.7)"/><polygon points="24,18 24,42 42,30" fill="white"/></svg>
                         </div>
                         <iframe class="video-iframe" src="https://www.youtube.com/embed/ubhWxTUNYOA?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" title="Student Testimonial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="display:none;"></iframe>
-                    </div></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="text-center mt-3">
             <button class="wa-btn open-any shine-effect" data-source="Feedback Section">📲 Join & Get Results Like These</button>
         </div>
     </div>
@@ -924,7 +987,7 @@
         closeForm();
     });
 
-    // Video play/pause toggle for mobile
+    // Video play/pause toggle for mobile and desktop
     function toggleVideo(wrapper) {
         const iframe = wrapper.querySelector('.video-iframe');
         const isPlaying = wrapper.classList.contains('playing');
