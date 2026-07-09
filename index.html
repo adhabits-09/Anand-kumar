@@ -217,7 +217,17 @@
             border-radius: 15px 15px 0 0;
         }
 
-        @media(max-width:768px){
+        
+        .feedback-track {
+            display: flex;
+            gap: 15px;
+            width: max-content;
+            animation: scrollLeft 40s linear infinite;
+        }
+        .feedback-track:hover {
+            animation-play-state: paused;
+        }
+@media(max-width:768px){
             section{padding:40px 0;}
             .hero-section{padding:50px 0 30px;}
             .counter{font-size:1.6rem;}
@@ -439,7 +449,7 @@
         <p class="text-center text-muted mb-4">Real stories from real students who transformed their lives</p>
 
         <div class="feedback-viewport" style="overflow:hidden;margin:1.5rem 0;">
-            <div class="feedback-track" style="display:flex;gap:15px;width:max-content;animation:scrollLeft 40s linear infinite;">
+            <div class="feedback-track" class="feedback-track">
                 <div class="feedback-item" style="flex-shrink:0;width:200px;height:auto;border-radius:15px;overflow:hidden;box-shadow:var(--shadow);background:#000;">
                     <img src="https://i.ibb.co/0y4dkhbC/Whats-App-Image-2026-07-01-at-11-36-04-PM.jpg" alt="Student Feedback 1" loading="lazy" style="width:100%;height:auto;display:block;">
                 </div>
